@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <head>
+            <a href="/logout">Log Out</a>
+            <a href="/myaccount/{{user.id}}">Edit My Account</a>
+            <h1>Hello {{ user.first_name }} {{ user.last_name }}!</h1>
+        </head>
+        <main>
+            <div id="left">
+                <h3>Add an Item</h3>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action='/submit_product' method='post'>
+                    {% csrf_token %}
+                    <br>
+                    Product: <input type='text' name='product_name'>
+                    <br>
+                    <br>
+                    Description: <input type='text' name='description'>
+                    <br>
+                    <br>
+                    <button type='submit'>Add Product</button>
+                </form>
+            </div>
+            <div id="right">
+                <h2>Shopping List:</h2>
+                <ul>
+                    {% for product in all_products reversed %}
+                    <li>{{ product.product_name }} - {{product.description}}  -Got It: <input type="checkbox" name="" id=""></li>
+                    <li>Added by: <a href="/user/{{product.user.id}}">{{product.user.first_name}} {{product.user.last_name}}</a></li>
+                    <li><a href="/destroy/{{product.id}}">Delete Item</a></li>
+                    <br>
+                    {% endfor %}
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html> 

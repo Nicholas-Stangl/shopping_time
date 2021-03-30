@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and/or Register</title>
+</head>
+
+<body>
+    <h1>Registration</h1>
+    <form action='/register' method='post'>
+        {% csrf_token %}
+        <br>
+        <br>
+        First Name: <input type='text' name='first_name'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'first_name' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Last Name: <input type='text' name='last_name'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'last_name' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Email: <input type='text' name='reg_email'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'reg_email' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Password: <input type='text' name='reg_password'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'reg_password' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Confirm PW: <input type='text' name='confirm_pw'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'confirm_pw' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        <button type='submit'>REGISTER</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <h1>Login</h1>
+    <form action='/login' method='post'>
+        {% csrf_token %}
+        <br>
+        Email: <input type='text' name='log_email'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'log_email' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Password: <input type='text' name='log_password'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'log_password' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        <button type='submit'>LOGIN</button>
+    </form>
+
+
+
+</body>
+
+</html>

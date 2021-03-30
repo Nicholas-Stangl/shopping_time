@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><a href="/logout">Click here to Log Out</a> | <a href="/shoppinglist">Back</a></p>
+    <h3>My Account</h3>
+    <form action='/edit_profile/{{ right_user.id }}' method='post'>
+        {% csrf_token %}
+        <br>
+        First Name: <input type='text' name='first_name' value="{{ right_user.first_name }}">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'first_name' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Last Name: <input type='text' name='last_name' value="{{ right_user.last_name }}">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'last_name' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        Email: <input type='text' name='reg_email' value="{{ right_user.email }}">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.extra_tags == 'reg_email' %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        <button type='submit'>Edit Profile</button>
+    </form>
+</body>
+</html>
